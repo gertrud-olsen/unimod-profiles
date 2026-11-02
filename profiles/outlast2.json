@@ -1,0 +1,316 @@
+{
+  "name": "Outlast 2",
+  "process": "Outlast2.exe",
+  "steam_appid": 414700,
+  "cheats": [
+    {
+      "name": "God Mode",
+      "description": "Keeps your health full so enemies can't kill you",
+      "type": "freeze",
+      "value_type": "int32",
+      "ue3": {
+        "class": "@pawn",
+        "owner": "Pawn",
+        "field": "Health"
+      },
+      "also_ue3": [
+        {
+          "class": "@pawn",
+          "owner": "OLHero|OLHeroPawn|OLPlayerPawn",
+          "field": "PreciseHealth",
+          "value_type": "float",
+          "value": 100.0
+        }
+      ],
+      "hotkey": "F1",
+      "from": {
+        "owner": "Pawn",
+        "field": "HealthMax"
+      }
+    },
+    {
+      "name": "Infinite Camera Battery",
+      "description": "Night vision never drains",
+      "type": "freeze",
+      "value_type": "float",
+      "value": 1.0,
+      "ue3": {
+        "class": "@pawn",
+        "owner": "OLHero|OLHeroPawn|OLPlayerPawn",
+        "field": "CurrentBatterySetEnergy"
+      },
+      "hotkey": "F2"
+    },
+    {
+      "name": "Invisible to Enemies",
+      "description": "Every enemy's sight system ignores you (all enemies in the level)",
+      "type": "freeze",
+      "value_type": "bool",
+      "value": true,
+      "ue3": {
+        "class": "OLAISightComponent|OLAISight",
+        "owner": "OLAISightComponent|OLAISight",
+        "field": "bIgnoreTarget",
+        "all": true
+      },
+      "hotkey": "F3"
+    },
+    {
+      "name": "Noclip",
+      "description": "Fly through walls: W/A/S/D move where you look, Space up, Ctrl down, Shift fast. Turn it off in open space",
+      "type": "noclip",
+      "options": {
+        "speed": 700,
+        "fast": 2500
+      },
+      "hotkey": "F4"
+    },
+    {
+      "name": "Speed Multiplier",
+      "description": "Scales walk, run and crouch speed. Drag the slider (2 = double). Original speed returns when switched off",
+      "type": "multiply",
+      "value_type": "float",
+      "value": 2.0,
+      "ue3": {
+        "class": "@pawn",
+        "owner": "Pawn",
+        "field": "GroundSpeed"
+      },
+      "also_ue3": [
+        {
+          "class": "@pawn",
+          "owner": "OLHero|OLHeroPawn|OLPlayerPawn",
+          "field": "NormalWalkSpeed"
+        },
+        {
+          "class": "@pawn",
+          "owner": "OLHero|OLHeroPawn|OLPlayerPawn",
+          "field": "NormalRunSpeed"
+        },
+        {
+          "class": "@pawn",
+          "owner": "OLHero|OLHeroPawn|OLPlayerPawn",
+          "field": "CrouchedSpeed"
+        },
+        {
+          "class": "@pawn",
+          "owner": "OLHero|OLHeroPawn|OLPlayerPawn",
+          "field": "WalkSpeed"
+        },
+        {
+          "class": "@pawn",
+          "owner": "OLHero|OLHeroPawn|OLPlayerPawn",
+          "field": "RunSpeed"
+        }
+      ],
+      "hotkey": "F5",
+      "options": {
+        "min": 0.5,
+        "max": 8
+      }
+    },
+    {
+      "name": "Fullbright",
+      "description": "Boosts screen brightness (drag the slider, 1 = normal) and clears the view: no fog, light shafts, or particle effects like flying paper, dust and smoke. Brightens the picture only; it does not light up the level",
+      "type": "multiply",
+      "value_type": "float",
+      "value": 2.0,
+      "ue3": {
+        "class": "WindowsClient",
+        "owner": "Client",
+        "field": "DisplayGamma"
+      },
+      "hotkey": "F6",
+      "options": {
+        "min": 1.0,
+        "max": 5.0,
+        "flags": [
+          {
+            "class": "ParticleSystemComponent",
+            "owner": "ParticleSystemComponent",
+            "field": "bSuppressSpawning",
+            "all": true
+          },
+          {
+            "class": "ParticleSystemComponent",
+            "owner": "ParticleSystemComponent",
+            "field": "bForcedInActive",
+            "all": true
+          }
+        ],
+        "zero": [
+          {
+            "class": "VolumetricFogComponent",
+            "owner": "VolumetricFogComponent",
+            "field": "FogDensityBottom",
+            "all": true
+          },
+          {
+            "class": "OLVolumetricFogComponent",
+            "owner": "VolumetricFogComponent",
+            "field": "FogDensityBottom",
+            "all": true
+          },
+          {
+            "class": "VolumetricFogComponent",
+            "owner": "VolumetricFogComponent",
+            "field": "FogDensityTop",
+            "all": true
+          },
+          {
+            "class": "OLVolumetricFogComponent",
+            "owner": "VolumetricFogComponent",
+            "field": "FogDensityTop",
+            "all": true
+          },
+          {
+            "class": "VolumetricFogComponent",
+            "owner": "VolumetricFogComponent",
+            "field": "FogParticlesDensityBottom",
+            "all": true
+          },
+          {
+            "class": "OLVolumetricFogComponent",
+            "owner": "VolumetricFogComponent",
+            "field": "FogParticlesDensityBottom",
+            "all": true
+          },
+          {
+            "class": "VolumetricFogComponent",
+            "owner": "VolumetricFogComponent",
+            "field": "FogParticlesDensityTop",
+            "all": true
+          },
+          {
+            "class": "OLVolumetricFogComponent",
+            "owner": "VolumetricFogComponent",
+            "field": "FogParticlesDensityTop",
+            "all": true
+          },
+          {
+            "class": "OLVolumetricFogComponent",
+            "owner": "OLVolumetricFogComponent",
+            "field": "FlashLightsVolumetricsIntensity",
+            "all": true
+          },
+          {
+            "class": "OLVolumetricFogComponent",
+            "owner": "OLVolumetricFogComponent",
+            "field": "LanternVolumetricsIntensity",
+            "all": true
+          },
+          {
+            "class": "OLVolumetricFogComponent",
+            "owner": "OLVolumetricFogComponent",
+            "field": "TorchVolumetricsIntensity",
+            "all": true
+          },
+          {
+            "class": "OLVolumetricFogComponent",
+            "owner": "OLVolumetricFogComponent",
+            "field": "ArrowVolumetricsIntensity",
+            "all": true
+          },
+          {
+            "class": "OLVolumetricFogComponent",
+            "owner": "OLVolumetricFogComponent",
+            "field": "HeroLightVolumetricsIntensity",
+            "all": true
+          },
+          {
+            "class": "ExponentialHeightFogComponent",
+            "owner": "ExponentialHeightFogComponent",
+            "field": "FogDensity",
+            "all": true
+          },
+          {
+            "class": "HeightFogComponent",
+            "owner": "HeightFogComponent",
+            "field": "Density",
+            "all": true
+          },
+          {
+            "class": "VolumetricFogLightComponent",
+            "owner": "VolumetricFogLightComponent",
+            "field": "VolumetricsIntensity",
+            "all": true
+          },
+          {
+            "class": "PointLightComponent",
+            "owner": "LightComponent",
+            "field": "VolumetricsIntensity",
+            "all": true
+          },
+          {
+            "class": "SpotLightComponent",
+            "owner": "LightComponent",
+            "field": "VolumetricsIntensity",
+            "all": true
+          },
+          {
+            "class": "DirectionalLightComponent",
+            "owner": "LightComponent",
+            "field": "VolumetricsIntensity",
+            "all": true
+          },
+          {
+            "class": "DominantDirectionalLightComponent",
+            "owner": "LightComponent",
+            "field": "VolumetricsIntensity",
+            "all": true
+          },
+          {
+            "class": "DominantSpotLightComponent",
+            "owner": "LightComponent",
+            "field": "VolumetricsIntensity",
+            "all": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "Skip Cutscene",
+      "type": "once",
+      "value_type": "bool",
+      "value": true,
+      "hotkey": "F7",
+      "description": "Jumps the cutscene that is playing to its end. Pre-rendered videos can't be skipped this way",
+      "options": {
+        "action": "skipcut",
+        "button": "Skip",
+        "button_width": 80
+      }
+    },
+    {
+      "name": "Auto-skip Cutscenes",
+      "type": "freeze",
+      "value_type": "bool",
+      "value": true,
+      "hotkey": "F8",
+      "description": "Skips every cutscene as soon as it starts, for as long as this is on",
+      "options": {
+        "action": "skipcut"
+      }
+    },
+    {
+      "name": "UEGSM",
+      "type": "multiply",
+      "value_type": "float",
+      "value": 2.0,
+      "hotkey": "F9",
+      "description": "Universal Unreal Engine Game Speed Multiplier (1 = normal)",
+      "options": {
+        "min": 0.1,
+        "max": 10,
+        "tab": "uegsm"
+      },
+      "ue3": {
+        "class": "WorldInfo",
+        "owner": "WorldInfo",
+        "field": "TimeDilation",
+        "all": true
+      }
+    }
+  ],
+  "auto_engine": "ue3"
+}
