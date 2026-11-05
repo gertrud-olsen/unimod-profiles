@@ -1,0 +1,121 @@
+{
+  "name": "Cuphead",
+  "process": "Cuphead.exe",
+  "steam_appid": 268910,
+  "auto_engine": "unity",
+  "cheats": [
+    {
+      "name": "Invincible",
+      "description": "You can't be hurt (the game's own invincibility flag). Switches back off when you turn it off",
+      "type": "freeze",
+      "value_type": "uint8",
+      "value": 1,
+      "unity": {
+        "class": "PlayerStatsManager",
+        "static_field": "<GlobalInvincibility>k__BackingField"
+      },
+      "options": {
+        "off_value": 0
+      },
+      "hotkey": "F2"
+    },
+    {
+      "name": "Infinite Health",
+      "description": "Keeps every player at full health while they are alive (you can only use it inside a level)",
+      "type": "freeze",
+      "value_type": "int32",
+      "value": 3,
+      "unity": {
+        "class": "PlayerManager",
+        "static": "players",
+        "dict": "slots",
+        "via": [
+          {
+            "class": "AbstractPlayerController",
+            "field": "_stats"
+          }
+        ],
+        "field_class": "PlayerStatsManager",
+        "field": "<Health>k__BackingField",
+        "value_from": "<HealthMax>k__BackingField",
+        "only_alive": "<Health>k__BackingField"
+      },
+      "hotkey": "F3"
+    },
+    {
+      "name": "Infinite Super",
+      "description": "Keeps the super meter full (you can only use it inside a level)",
+      "type": "freeze",
+      "value_type": "float",
+      "value": 50.0,
+      "unity": {
+        "class": "PlayerManager",
+        "static": "players",
+        "dict": "slots",
+        "via": [
+          {
+            "class": "AbstractPlayerController",
+            "field": "_stats"
+          }
+        ],
+        "field_class": "PlayerStatsManager",
+        "field": "<SuperMeter>k__BackingField",
+        "value_from": "<SuperMeterMax>k__BackingField"
+      },
+      "hotkey": "F4"
+    },
+    {
+      "name": "Noclip",
+      "description": "Float through walls and floors. Space = up, Ctrl = down, Shift = faster. Switches back off cleanly (only inside a level)",
+      "type": "freeze",
+      "value_type": "int32",
+      "value": 0,
+      "unity": {
+        "class": "PlayerManager",
+        "static": "players",
+        "via": [
+          {
+            "class": "LevelPlayerController",
+            "field": "_motor"
+          }
+        ],
+        "fly": {
+          "class": "LevelPlayerMotor",
+          "zero": [
+            "wallMask",
+            "ceilingMask",
+            "groundMask"
+          ],
+          "off": [
+            "allowFalling"
+          ],
+          "velocity": "velocityManager",
+          "vclass": "VelocityManager",
+          "vfield": "_y",
+          "speed": 600,
+          "fast": 1500
+        }
+      },
+      "hotkey": "F5"
+    },
+    {
+      "name": "UGSM",
+      "description": "Game speed (1 = normal). Slow motion or fast forward",
+      "type": "multiply",
+      "value_type": "float",
+      "value": 2.0,
+      "options": {
+        "min": 0.1,
+        "max": 10,
+        "tab": "ugsm"
+      },
+      "ue3": {
+        "class": "Time",
+        "owner": "Time",
+        "field": "timeScale",
+        "all": true
+      },
+      "hotkey": "F1"
+    }
+  ]
+}
